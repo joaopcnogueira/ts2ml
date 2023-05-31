@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "ts2ml"
+  site-url: "https://joaopcnogueira.github.io/ts2ml"
+  description: "Tools to Transform a Time Series into Features and Target a.k.a Supervised Learning"
+  repo-branch: main
+  repo-url: "https://github.com/joaopcnogueira/ts2ml"
