@@ -13,6 +13,7 @@ pip install ts2ml
 ``` python
 import pandas as pd
 from ts2ml.core import add_missing_slots
+from ts2ml.core import transform_ts_data_into_features_and_target
 ```
 
 ``` python
@@ -48,11 +49,14 @@ df
 
 </div>
 
+Let’s fill the missing slots with zeros
+
 ``` python
-add_missing_slots(df, datetime_col='pickup_hour', entity_col='pickup_location_id', value_col='rides', freq='H')
+df = add_missing_slots(df, datetime_col='pickup_hour', entity_col='pickup_location_id', value_col='rides', freq='H')
+df
 ```
 
-    100%|██████████| 2/2 [00:00<00:00, 352.17it/s]
+    100%|██████████| 2/2 [00:00<00:00, 472.92it/s]
 
 <div>
 <style scoped>
@@ -84,6 +88,104 @@ add_missing_slots(df, datetime_col='pickup_hour', entity_col='pickup_location_id
 
 </div>
 
+Now, let’s build features and targets to predict the number of rides for
+the next hour for each location_id, by using the historical number of
+rides for the last 3 hours
+
+``` python
+features, targets = transform_ts_data_into_features_and_target(
+    df,
+    n_features=3,
+    datetime_col='pickup_hour', 
+    entity_col='pickup_location_id', 
+    value_col='rides',
+    n_targets=1,
+    step_size=1,
+    step_name='hour'
+)
+```
+
+    100%|██████████| 2/2 [00:00<00:00, 535.64it/s]
+
+``` python
+features
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | rides_previous_3_hour | rides_previous_2_hour | rides_previous_1_hour | pickup_hour         | pickup_location_id |
+|-----|-----------------------|-----------------------|-----------------------|---------------------|--------------------|
+| 0   | 2.0                   | 3.0                   | 0.0                   | 2022-01-01 03:00:00 | 1                  |
+| 1   | 3.0                   | 0.0                   | 1.0                   | 2022-01-01 04:00:00 | 1                  |
+| 2   | 0.0                   | 1.0                   | 2.0                   | 2022-01-01 03:00:00 | 2                  |
+| 3   | 1.0                   | 2.0                   | 0.0                   | 2022-01-01 04:00:00 | 2                  |
+
+</div>
+
+``` python
+targets
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | target_rides_next_hour |
+|-----|------------------------|
+| 0   | 1.0                    |
+| 1   | 0.0                    |
+| 2   | 0.0                    |
+| 3   | 0.0                    |
+
+</div>
+
+``` python
+Xy_df = pd.concat([features, targets], axis=1)
+Xy_df
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | rides_previous_3_hour | rides_previous_2_hour | rides_previous_1_hour | pickup_hour         | pickup_location_id | target_rides_next_hour |
+|-----|-----------------------|-----------------------|-----------------------|---------------------|--------------------|------------------------|
+| 0   | 2.0                   | 3.0                   | 0.0                   | 2022-01-01 03:00:00 | 1                  | 1.0                    |
+| 1   | 3.0                   | 0.0                   | 1.0                   | 2022-01-01 04:00:00 | 1                  | 0.0                    |
+| 2   | 0.0                   | 1.0                   | 2.0                   | 2022-01-01 03:00:00 | 2                  | 0.0                    |
+| 3   | 1.0                   | 2.0                   | 0.0                   | 2022-01-01 04:00:00 | 2                  | 0.0                    |
+
+</div>
+
 # Another Example
 
 Montly spaced time series
@@ -100,7 +202,7 @@ cities = ['FOR', 'SP', 'RJ']
 
 # Create dataframe with random sales data for each city on each month
 df = pd.DataFrame({
-    'timestamp': date_rng,
+    'date': date_rng,
     'city': np.repeat(cities, len(date_rng)//len(cities)),
     'sales': np.random.randint(1000, 5000, size=len(date_rng))
 })
@@ -120,74 +222,44 @@ df
     }
 </style>
 
-|     | timestamp  | city | sales |
+|     | date       | city | sales |
 |-----|------------|------|-------|
-| 0   | 2020-01-01 | FOR  | 4216  |
-| 1   | 2020-02-01 | FOR  | 4309  |
-| 2   | 2020-03-01 | FOR  | 3639  |
-| 3   | 2020-04-01 | FOR  | 3685  |
-| 4   | 2020-05-01 | FOR  | 4481  |
-| 5   | 2020-06-01 | FOR  | 4133  |
-| 6   | 2020-07-01 | FOR  | 3504  |
-| 7   | 2020-08-01 | FOR  | 3957  |
-| 8   | 2020-09-01 | FOR  | 2781  |
-| 9   | 2020-10-01 | FOR  | 2996  |
-| 10  | 2020-11-01 | FOR  | 3963  |
-| 11  | 2020-12-01 | FOR  | 2381  |
-| 12  | 2021-01-01 | SP   | 1489  |
-| 13  | 2021-02-01 | SP   | 3863  |
-| 14  | 2021-03-01 | SP   | 4005  |
-| 15  | 2021-04-01 | SP   | 3612  |
-| 16  | 2021-05-01 | SP   | 4823  |
-| 17  | 2021-06-01 | SP   | 1687  |
-| 18  | 2021-07-01 | SP   | 3688  |
-| 19  | 2021-08-01 | SP   | 1729  |
-| 20  | 2021-09-01 | SP   | 1496  |
-| 21  | 2021-10-01 | SP   | 2460  |
-| 22  | 2021-11-01 | SP   | 1448  |
-| 23  | 2021-12-01 | SP   | 3174  |
-| 24  | 2022-01-01 | RJ   | 1201  |
-| 25  | 2022-02-01 | RJ   | 3210  |
-| 26  | 2022-03-01 | RJ   | 4580  |
-| 27  | 2022-04-01 | RJ   | 1318  |
-| 28  | 2022-05-01 | RJ   | 4607  |
-| 29  | 2022-06-01 | RJ   | 1565  |
-| 30  | 2022-07-01 | RJ   | 2935  |
-| 31  | 2022-08-01 | RJ   | 3924  |
-| 32  | 2022-09-01 | RJ   | 1577  |
-| 33  | 2022-10-01 | RJ   | 4395  |
-| 34  | 2022-11-01 | RJ   | 1867  |
-| 35  | 2022-12-01 | RJ   | 2739  |
-
-</div>
-
-``` python
-df.groupby('city').agg({'timestamp': ['min', 'max']})
-```
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-&#10;    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-&#10;    .dataframe thead tr th {
-        text-align: left;
-    }
-&#10;    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
-
-|      | timestamp  |            |
-|------|------------|------------|
-|      | min        | max        |
-| city |            |            |
-| FOR  | 2020-01-01 | 2020-12-01 |
-| RJ   | 2022-01-01 | 2022-12-01 |
-| SP   | 2021-01-01 | 2021-12-01 |
+| 0   | 2020-01-01 | FOR  | 4944  |
+| 1   | 2020-02-01 | FOR  | 4586  |
+| 2   | 2020-03-01 | FOR  | 1075  |
+| 3   | 2020-04-01 | FOR  | 1922  |
+| 4   | 2020-05-01 | FOR  | 2655  |
+| 5   | 2020-06-01 | FOR  | 4719  |
+| 6   | 2020-07-01 | FOR  | 3332  |
+| 7   | 2020-08-01 | FOR  | 3789  |
+| 8   | 2020-09-01 | FOR  | 1109  |
+| 9   | 2020-10-01 | FOR  | 1210  |
+| 10  | 2020-11-01 | FOR  | 4000  |
+| 11  | 2020-12-01 | FOR  | 3055  |
+| 12  | 2021-01-01 | SP   | 1388  |
+| 13  | 2021-02-01 | SP   | 4016  |
+| 14  | 2021-03-01 | SP   | 1888  |
+| 15  | 2021-04-01 | SP   | 4151  |
+| 16  | 2021-05-01 | SP   | 1847  |
+| 17  | 2021-06-01 | SP   | 1181  |
+| 18  | 2021-07-01 | SP   | 2035  |
+| 19  | 2021-08-01 | SP   | 3025  |
+| 20  | 2021-09-01 | SP   | 2503  |
+| 21  | 2021-10-01 | SP   | 2474  |
+| 22  | 2021-11-01 | SP   | 4378  |
+| 23  | 2021-12-01 | SP   | 4007  |
+| 24  | 2022-01-01 | RJ   | 3977  |
+| 25  | 2022-02-01 | RJ   | 1029  |
+| 26  | 2022-03-01 | RJ   | 4163  |
+| 27  | 2022-04-01 | RJ   | 2449  |
+| 28  | 2022-05-01 | RJ   | 2867  |
+| 29  | 2022-06-01 | RJ   | 2848  |
+| 30  | 2022-07-01 | RJ   | 2280  |
+| 31  | 2022-08-01 | RJ   | 4442  |
+| 32  | 2022-09-01 | RJ   | 2561  |
+| 33  | 2022-10-01 | RJ   | 2882  |
+| 34  | 2022-11-01 | RJ   | 1102  |
+| 35  | 2022-12-01 | RJ   | 4863  |
 
 </div>
 
@@ -217,32 +289,37 @@ df
     }
 </style>
 
-|     | timestamp  | city | sales |
+|     | date       | city | sales |
 |-----|------------|------|-------|
-| 0   | 2020-01-01 | FOR  | 4216  |
-| 1   | 2020-03-01 | FOR  | 3639  |
-| 2   | 2020-05-01 | FOR  | 4481  |
-| 3   | 2020-06-01 | FOR  | 4133  |
-| 4   | 2020-07-01 | FOR  | 3504  |
-| 5   | 2020-08-01 | FOR  | 3957  |
-| 6   | 2020-09-01 | FOR  | 2781  |
-| 7   | 2020-10-01 | FOR  | 2996  |
-| 8   | 2020-11-01 | FOR  | 3963  |
-| 9   | 2020-12-01 | FOR  | 2381  |
-| 10  | 2021-01-01 | SP   | 1489  |
-| 11  | 2021-02-01 | SP   | 3863  |
-| 12  | 2021-07-01 | SP   | 3688  |
-| 13  | 2021-08-01 | SP   | 1729  |
-| 14  | 2021-10-01 | SP   | 2460  |
-| 15  | 2022-01-01 | RJ   | 1201  |
-| 16  | 2022-03-01 | RJ   | 4580  |
-| 17  | 2022-04-01 | RJ   | 1318  |
-| 18  | 2022-05-01 | RJ   | 4607  |
-| 19  | 2022-07-01 | RJ   | 2935  |
-| 20  | 2022-08-01 | RJ   | 3924  |
-| 21  | 2022-09-01 | RJ   | 1577  |
-| 22  | 2022-11-01 | RJ   | 1867  |
-| 23  | 2022-12-01 | RJ   | 2739  |
+| 0   | 2020-01-01 | FOR  | 4944  |
+| 1   | 2020-02-01 | FOR  | 4586  |
+| 2   | 2020-03-01 | FOR  | 1075  |
+| 3   | 2020-05-01 | FOR  | 2655  |
+| 4   | 2020-06-01 | FOR  | 4719  |
+| 5   | 2020-08-01 | FOR  | 3789  |
+| 6   | 2020-09-01 | FOR  | 1109  |
+| 7   | 2020-10-01 | FOR  | 1210  |
+| 8   | 2020-11-01 | FOR  | 4000  |
+| 9   | 2021-01-01 | SP   | 1388  |
+| 10  | 2021-02-01 | SP   | 4016  |
+| 11  | 2021-03-01 | SP   | 1888  |
+| 12  | 2021-04-01 | SP   | 4151  |
+| 13  | 2021-06-01 | SP   | 1181  |
+| 14  | 2021-07-01 | SP   | 2035  |
+| 15  | 2021-08-01 | SP   | 3025  |
+| 16  | 2021-09-01 | SP   | 2503  |
+| 17  | 2021-10-01 | SP   | 2474  |
+| 18  | 2021-11-01 | SP   | 4378  |
+| 19  | 2021-12-01 | SP   | 4007  |
+| 20  | 2022-01-01 | RJ   | 3977  |
+| 21  | 2022-02-01 | RJ   | 1029  |
+| 22  | 2022-04-01 | RJ   | 2449  |
+| 23  | 2022-05-01 | RJ   | 2867  |
+| 24  | 2022-06-01 | RJ   | 2848  |
+| 25  | 2022-07-01 | RJ   | 2280  |
+| 26  | 2022-09-01 | RJ   | 2561  |
+| 27  | 2022-10-01 | RJ   | 2882  |
+| 28  | 2022-12-01 | RJ   | 4863  |
 
 </div>
 
@@ -250,11 +327,11 @@ Now lets fill the missing slots with zero values. The function will
 complete the missing slots with zeros:
 
 ``` python
-df_full = add_missing_slots(df, datetime_col='timestamp', entity_col='city', value_col='sales', freq='MS')
+df_full = add_missing_slots(df, datetime_col='date', entity_col='city', value_col='sales', freq='MS')
 df_full
 ```
 
-    100%|██████████| 3/3 [00:00<00:00, 844.15it/s]
+    100%|██████████| 3/3 [00:00<00:00, 916.32it/s]
 
 <div>
 <style scoped>
@@ -269,25 +346,44 @@ df_full
     }
 </style>
 
-|     | timestamp  | city | sales |
+|     | date       | city | sales |
 |-----|------------|------|-------|
-| 0   | 2020-01-01 | FOR  | 4216  |
-| 1   | 2020-02-01 | FOR  | 0     |
-| 2   | 2020-03-01 | FOR  | 3639  |
+| 0   | 2020-01-01 | FOR  | 4944  |
+| 1   | 2020-02-01 | FOR  | 4586  |
+| 2   | 2020-03-01 | FOR  | 1075  |
 | 3   | 2020-04-01 | FOR  | 0     |
-| 4   | 2020-05-01 | FOR  | 4481  |
+| 4   | 2020-05-01 | FOR  | 2655  |
 | ... | ...        | ...  | ...   |
-| 103 | 2022-08-01 | RJ   | 3924  |
-| 104 | 2022-09-01 | RJ   | 1577  |
-| 105 | 2022-10-01 | RJ   | 0     |
-| 106 | 2022-11-01 | RJ   | 1867  |
-| 107 | 2022-12-01 | RJ   | 2739  |
+| 103 | 2022-08-01 | RJ   | 0     |
+| 104 | 2022-09-01 | RJ   | 2561  |
+| 105 | 2022-10-01 | RJ   | 2882  |
+| 106 | 2022-11-01 | RJ   | 0     |
+| 107 | 2022-12-01 | RJ   | 4863  |
 
 <p>108 rows × 3 columns</p>
 </div>
 
+Let’s build a dataset for training a machine learning model to predict
+the sales for the next 3 months, for each city, based on historical data
+of sales for the previous 6 months.
+
 ``` python
-df_full.groupby('city').agg({'timestamp': ['min', 'max']})
+features, targets = transform_ts_data_into_features_and_target(
+    df_full,
+    n_features=3,
+    datetime_col='date',
+    entity_col='city',
+    value_col='sales',
+    n_targets=1,
+    step_size=1,
+    step_name='month'
+)
+```
+
+    100%|██████████| 3/3 [00:00<00:00, 214.63it/s]
+
+``` python
+pd.concat([features, targets], axis=1)
 ```
 
 <div>
@@ -298,20 +394,24 @@ df_full.groupby('city').agg({'timestamp': ['min', 'max']})
 &#10;    .dataframe tbody tr th {
         vertical-align: top;
     }
-&#10;    .dataframe thead tr th {
-        text-align: left;
-    }
-&#10;    .dataframe thead tr:last-of-type th {
+&#10;    .dataframe thead th {
         text-align: right;
     }
 </style>
 
-|      | timestamp  |            |
-|------|------------|------------|
-|      | min        | max        |
-| city |            |            |
-| FOR  | 2020-01-01 | 2022-12-01 |
-| RJ   | 2020-01-01 | 2022-12-01 |
-| SP   | 2020-01-01 | 2022-12-01 |
+|     | sales_previous_3_month | sales_previous_2_month | sales_previous_1_month | date       | city | target_sales_next_month |
+|-----|------------------------|------------------------|------------------------|------------|------|-------------------------|
+| 0   | 4944.0                 | 4586.0                 | 1075.0                 | 2020-04-01 | FOR  | 0.0                     |
+| 1   | 4586.0                 | 1075.0                 | 0.0                    | 2020-05-01 | FOR  | 2655.0                  |
+| 2   | 1075.0                 | 0.0                    | 2655.0                 | 2020-06-01 | FOR  | 4719.0                  |
+| 3   | 0.0                    | 2655.0                 | 4719.0                 | 2020-07-01 | FOR  | 0.0                     |
+| 4   | 2655.0                 | 4719.0                 | 0.0                    | 2020-08-01 | FOR  | 3789.0                  |
+| ... | ...                    | ...                    | ...                    | ...        | ...  | ...                     |
+| 91  | 2449.0                 | 2867.0                 | 2848.0                 | 2022-07-01 | RJ   | 2280.0                  |
+| 92  | 2867.0                 | 2848.0                 | 2280.0                 | 2022-08-01 | RJ   | 0.0                     |
+| 93  | 2848.0                 | 2280.0                 | 0.0                    | 2022-09-01 | RJ   | 2561.0                  |
+| 94  | 2280.0                 | 0.0                    | 2561.0                 | 2022-10-01 | RJ   | 2882.0                  |
+| 95  | 0.0                    | 2561.0                 | 2882.0                 | 2022-11-01 | RJ   | 0.0                     |
 
+<p>96 rows × 6 columns</p>
 </div>
