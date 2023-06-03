@@ -56,7 +56,7 @@ df = add_missing_slots(df, datetime_col='pickup_hour', entity_col='pickup_locati
 df
 ```
 
-    100%|██████████| 2/2 [00:00<00:00, 472.92it/s]
+    100%|██████████| 2/2 [00:00<00:00, 907.86it/s]
 
 <div>
 <style scoped>
@@ -105,7 +105,7 @@ features, targets = transform_ts_data_into_features_and_target(
 )
 ```
 
-    100%|██████████| 2/2 [00:00<00:00, 535.64it/s]
+    100%|██████████| 2/2 [00:00<00:00, 597.86it/s]
 
 ``` python
 features
@@ -225,41 +225,41 @@ df
 |     | date       | city | sales |
 |-----|------------|------|-------|
 | 0   | 2020-01-01 | FOR  | 4944  |
-| 1   | 2020-02-01 | FOR  | 4586  |
-| 2   | 2020-03-01 | FOR  | 1075  |
-| 3   | 2020-04-01 | FOR  | 1922  |
-| 4   | 2020-05-01 | FOR  | 2655  |
-| 5   | 2020-06-01 | FOR  | 4719  |
-| 6   | 2020-07-01 | FOR  | 3332  |
-| 7   | 2020-08-01 | FOR  | 3789  |
-| 8   | 2020-09-01 | FOR  | 1109  |
-| 9   | 2020-10-01 | FOR  | 1210  |
-| 10  | 2020-11-01 | FOR  | 4000  |
-| 11  | 2020-12-01 | FOR  | 3055  |
-| 12  | 2021-01-01 | SP   | 1388  |
-| 13  | 2021-02-01 | SP   | 4016  |
-| 14  | 2021-03-01 | SP   | 1888  |
-| 15  | 2021-04-01 | SP   | 4151  |
-| 16  | 2021-05-01 | SP   | 1847  |
-| 17  | 2021-06-01 | SP   | 1181  |
-| 18  | 2021-07-01 | SP   | 2035  |
-| 19  | 2021-08-01 | SP   | 3025  |
-| 20  | 2021-09-01 | SP   | 2503  |
-| 21  | 2021-10-01 | SP   | 2474  |
-| 22  | 2021-11-01 | SP   | 4378  |
-| 23  | 2021-12-01 | SP   | 4007  |
-| 24  | 2022-01-01 | RJ   | 3977  |
-| 25  | 2022-02-01 | RJ   | 1029  |
-| 26  | 2022-03-01 | RJ   | 4163  |
-| 27  | 2022-04-01 | RJ   | 2449  |
-| 28  | 2022-05-01 | RJ   | 2867  |
-| 29  | 2022-06-01 | RJ   | 2848  |
-| 30  | 2022-07-01 | RJ   | 2280  |
-| 31  | 2022-08-01 | RJ   | 4442  |
-| 32  | 2022-09-01 | RJ   | 2561  |
-| 33  | 2022-10-01 | RJ   | 2882  |
-| 34  | 2022-11-01 | RJ   | 1102  |
-| 35  | 2022-12-01 | RJ   | 4863  |
+| 1   | 2020-02-01 | FOR  | 3435  |
+| 2   | 2020-03-01 | FOR  | 4543  |
+| 3   | 2020-04-01 | FOR  | 3879  |
+| 4   | 2020-05-01 | FOR  | 2601  |
+| 5   | 2020-06-01 | FOR  | 2922  |
+| 6   | 2020-07-01 | FOR  | 4542  |
+| 7   | 2020-08-01 | FOR  | 1338  |
+| 8   | 2020-09-01 | FOR  | 2938  |
+| 9   | 2020-10-01 | FOR  | 2695  |
+| 10  | 2020-11-01 | FOR  | 4065  |
+| 11  | 2020-12-01 | FOR  | 3864  |
+| 12  | 2021-01-01 | SP   | 2652  |
+| 13  | 2021-02-01 | SP   | 2137  |
+| 14  | 2021-03-01 | SP   | 2663  |
+| 15  | 2021-04-01 | SP   | 1168  |
+| 16  | 2021-05-01 | SP   | 4523  |
+| 17  | 2021-06-01 | SP   | 4135  |
+| 18  | 2021-07-01 | SP   | 3566  |
+| 19  | 2021-08-01 | SP   | 2121  |
+| 20  | 2021-09-01 | SP   | 1070  |
+| 21  | 2021-10-01 | SP   | 1624  |
+| 22  | 2021-11-01 | SP   | 3034  |
+| 23  | 2021-12-01 | SP   | 4063  |
+| 24  | 2022-01-01 | RJ   | 2297  |
+| 25  | 2022-02-01 | RJ   | 3430  |
+| 26  | 2022-03-01 | RJ   | 2903  |
+| 27  | 2022-04-01 | RJ   | 4197  |
+| 28  | 2022-05-01 | RJ   | 4141  |
+| 29  | 2022-06-01 | RJ   | 2899  |
+| 30  | 2022-07-01 | RJ   | 4529  |
+| 31  | 2022-08-01 | RJ   | 3612  |
+| 32  | 2022-09-01 | RJ   | 1856  |
+| 33  | 2022-10-01 | RJ   | 4804  |
+| 34  | 2022-11-01 | RJ   | 1764  |
+| 35  | 2022-12-01 | RJ   | 4425  |
 
 </div>
 
@@ -292,34 +292,34 @@ df
 |     | date       | city | sales |
 |-----|------------|------|-------|
 | 0   | 2020-01-01 | FOR  | 4944  |
-| 1   | 2020-02-01 | FOR  | 4586  |
-| 2   | 2020-03-01 | FOR  | 1075  |
-| 3   | 2020-05-01 | FOR  | 2655  |
-| 4   | 2020-06-01 | FOR  | 4719  |
-| 5   | 2020-08-01 | FOR  | 3789  |
-| 6   | 2020-09-01 | FOR  | 1109  |
-| 7   | 2020-10-01 | FOR  | 1210  |
-| 8   | 2020-11-01 | FOR  | 4000  |
-| 9   | 2021-01-01 | SP   | 1388  |
-| 10  | 2021-02-01 | SP   | 4016  |
-| 11  | 2021-03-01 | SP   | 1888  |
-| 12  | 2021-04-01 | SP   | 4151  |
-| 13  | 2021-06-01 | SP   | 1181  |
-| 14  | 2021-07-01 | SP   | 2035  |
-| 15  | 2021-08-01 | SP   | 3025  |
-| 16  | 2021-09-01 | SP   | 2503  |
-| 17  | 2021-10-01 | SP   | 2474  |
-| 18  | 2021-11-01 | SP   | 4378  |
-| 19  | 2021-12-01 | SP   | 4007  |
-| 20  | 2022-01-01 | RJ   | 3977  |
-| 21  | 2022-02-01 | RJ   | 1029  |
-| 22  | 2022-04-01 | RJ   | 2449  |
-| 23  | 2022-05-01 | RJ   | 2867  |
-| 24  | 2022-06-01 | RJ   | 2848  |
-| 25  | 2022-07-01 | RJ   | 2280  |
-| 26  | 2022-09-01 | RJ   | 2561  |
-| 27  | 2022-10-01 | RJ   | 2882  |
-| 28  | 2022-12-01 | RJ   | 4863  |
+| 1   | 2020-02-01 | FOR  | 3435  |
+| 2   | 2020-03-01 | FOR  | 4543  |
+| 3   | 2020-04-01 | FOR  | 3879  |
+| 4   | 2020-05-01 | FOR  | 2601  |
+| 5   | 2020-06-01 | FOR  | 2922  |
+| 6   | 2020-07-01 | FOR  | 4542  |
+| 7   | 2020-08-01 | FOR  | 1338  |
+| 8   | 2020-09-01 | FOR  | 2938  |
+| 9   | 2020-11-01 | FOR  | 4065  |
+| 10  | 2020-12-01 | FOR  | 3864  |
+| 11  | 2021-01-01 | SP   | 2652  |
+| 12  | 2021-02-01 | SP   | 2137  |
+| 13  | 2021-03-01 | SP   | 2663  |
+| 14  | 2021-07-01 | SP   | 3566  |
+| 15  | 2021-08-01 | SP   | 2121  |
+| 16  | 2021-10-01 | SP   | 1624  |
+| 17  | 2021-11-01 | SP   | 3034  |
+| 18  | 2021-12-01 | SP   | 4063  |
+| 19  | 2022-01-01 | RJ   | 2297  |
+| 20  | 2022-02-01 | RJ   | 3430  |
+| 21  | 2022-03-01 | RJ   | 2903  |
+| 22  | 2022-04-01 | RJ   | 4197  |
+| 23  | 2022-05-01 | RJ   | 4141  |
+| 24  | 2022-06-01 | RJ   | 2899  |
+| 25  | 2022-09-01 | RJ   | 1856  |
+| 26  | 2022-10-01 | RJ   | 4804  |
+| 27  | 2022-11-01 | RJ   | 1764  |
+| 28  | 2022-12-01 | RJ   | 4425  |
 
 </div>
 
@@ -331,7 +331,7 @@ df_full = add_missing_slots(df, datetime_col='date', entity_col='city', value_co
 df_full
 ```
 
-    100%|██████████| 3/3 [00:00<00:00, 916.32it/s]
+    100%|██████████| 3/3 [00:00<00:00, 843.70it/s]
 
 <div>
 <style scoped>
@@ -349,16 +349,16 @@ df_full
 |     | date       | city | sales |
 |-----|------------|------|-------|
 | 0   | 2020-01-01 | FOR  | 4944  |
-| 1   | 2020-02-01 | FOR  | 4586  |
-| 2   | 2020-03-01 | FOR  | 1075  |
-| 3   | 2020-04-01 | FOR  | 0     |
-| 4   | 2020-05-01 | FOR  | 2655  |
+| 1   | 2020-02-01 | FOR  | 3435  |
+| 2   | 2020-03-01 | FOR  | 4543  |
+| 3   | 2020-04-01 | FOR  | 3879  |
+| 4   | 2020-05-01 | FOR  | 2601  |
 | ... | ...        | ...  | ...   |
 | 103 | 2022-08-01 | RJ   | 0     |
-| 104 | 2022-09-01 | RJ   | 2561  |
-| 105 | 2022-10-01 | RJ   | 2882  |
-| 106 | 2022-11-01 | RJ   | 0     |
-| 107 | 2022-12-01 | RJ   | 4863  |
+| 104 | 2022-09-01 | RJ   | 1856  |
+| 105 | 2022-10-01 | RJ   | 4804  |
+| 106 | 2022-11-01 | RJ   | 1764  |
+| 107 | 2022-12-01 | RJ   | 4425  |
 
 <p>108 rows × 3 columns</p>
 </div>
@@ -380,7 +380,7 @@ features, targets = transform_ts_data_into_features_and_target(
 )
 ```
 
-    100%|██████████| 3/3 [00:00<00:00, 214.63it/s]
+    100%|██████████| 3/3 [00:00<00:00, 205.58it/s]
 
 ``` python
 pd.concat([features, targets], axis=1)
@@ -401,17 +401,132 @@ pd.concat([features, targets], axis=1)
 
 |     | sales_previous_3_month | sales_previous_2_month | sales_previous_1_month | date       | city | target_sales_next_month |
 |-----|------------------------|------------------------|------------------------|------------|------|-------------------------|
-| 0   | 4944.0                 | 4586.0                 | 1075.0                 | 2020-04-01 | FOR  | 0.0                     |
-| 1   | 4586.0                 | 1075.0                 | 0.0                    | 2020-05-01 | FOR  | 2655.0                  |
-| 2   | 1075.0                 | 0.0                    | 2655.0                 | 2020-06-01 | FOR  | 4719.0                  |
-| 3   | 0.0                    | 2655.0                 | 4719.0                 | 2020-07-01 | FOR  | 0.0                     |
-| 4   | 2655.0                 | 4719.0                 | 0.0                    | 2020-08-01 | FOR  | 3789.0                  |
+| 0   | 4944.0                 | 3435.0                 | 4543.0                 | 2020-04-01 | FOR  | 3879.0                  |
+| 1   | 3435.0                 | 4543.0                 | 3879.0                 | 2020-05-01 | FOR  | 2601.0                  |
+| 2   | 4543.0                 | 3879.0                 | 2601.0                 | 2020-06-01 | FOR  | 2922.0                  |
+| 3   | 3879.0                 | 2601.0                 | 2922.0                 | 2020-07-01 | FOR  | 4542.0                  |
+| 4   | 2601.0                 | 2922.0                 | 4542.0                 | 2020-08-01 | FOR  | 1338.0                  |
 | ... | ...                    | ...                    | ...                    | ...        | ...  | ...                     |
-| 91  | 2449.0                 | 2867.0                 | 2848.0                 | 2022-07-01 | RJ   | 2280.0                  |
-| 92  | 2867.0                 | 2848.0                 | 2280.0                 | 2022-08-01 | RJ   | 0.0                     |
-| 93  | 2848.0                 | 2280.0                 | 0.0                    | 2022-09-01 | RJ   | 2561.0                  |
-| 94  | 2280.0                 | 0.0                    | 2561.0                 | 2022-10-01 | RJ   | 2882.0                  |
-| 95  | 0.0                    | 2561.0                 | 2882.0                 | 2022-11-01 | RJ   | 0.0                     |
+| 91  | 4197.0                 | 4141.0                 | 2899.0                 | 2022-07-01 | RJ   | 0.0                     |
+| 92  | 4141.0                 | 2899.0                 | 0.0                    | 2022-08-01 | RJ   | 0.0                     |
+| 93  | 2899.0                 | 0.0                    | 0.0                    | 2022-09-01 | RJ   | 1856.0                  |
+| 94  | 0.0                    | 0.0                    | 1856.0                 | 2022-10-01 | RJ   | 4804.0                  |
+| 95  | 0.0                    | 1856.0                 | 4804.0                 | 2022-11-01 | RJ   | 1764.0                  |
+
+<p>96 rows × 6 columns</p>
+</div>
+
+# Embedding on Sklearn Pipelines
+
+``` python
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import FunctionTransformer
+```
+
+``` python
+add_missing_slots_transformer = FunctionTransformer(
+    add_missing_slots, 
+    kw_args={
+        'datetime_col': 'date', 
+        'entity_col': 'city', 
+        'value_col': 'sales', 
+        'freq': 'MS'
+    }
+)
+
+transform_ts_data_into_features_and_target_transformer = FunctionTransformer(
+    transform_ts_data_into_features_and_target, 
+    kw_args={
+        'n_features': 3, 
+        'datetime_col': 'date', 
+        'entity_col': 'city', 
+        'value_col': 'sales', 
+        'n_targets': 1, 
+        'step_size': 1, 
+        'step_name': 'month',
+        'concat_Xy': True
+    }
+)
+```
+
+``` python
+ts_data_to_features_and_target_pipeline = make_pipeline(
+    add_missing_slots_transformer,
+    transform_ts_data_into_features_and_target_transformer
+)
+ts_data_to_features_and_target_pipeline
+```
+
+<style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#x27;functiontransformer-1&#x27;,
+                 FunctionTransformer(func=&lt;function add_missing_slots at 0x11f8f49d0&gt;,
+                                     kw_args={&#x27;datetime_col&#x27;: &#x27;date&#x27;,
+                                              &#x27;entity_col&#x27;: &#x27;city&#x27;,
+                                              &#x27;freq&#x27;: &#x27;MS&#x27;,
+                                              &#x27;value_col&#x27;: &#x27;sales&#x27;})),
+                (&#x27;functiontransformer-2&#x27;,
+                 FunctionTransformer(func=&lt;function transform_ts_data_into_features_and_target at 0x11f925ca0&gt;,
+                                     kw_args={&#x27;concat_Xy&#x27;: True,
+                                              &#x27;datetime_col&#x27;: &#x27;date&#x27;,
+                                              &#x27;entity_col&#x27;: &#x27;city&#x27;,
+                                              &#x27;n_features&#x27;: 3, &#x27;n_targets&#x27;: 1,
+                                              &#x27;step_name&#x27;: &#x27;month&#x27;,
+                                              &#x27;step_size&#x27;: 1,
+                                              &#x27;value_col&#x27;: &#x27;sales&#x27;}))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox" ><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[(&#x27;functiontransformer-1&#x27;,
+                 FunctionTransformer(func=&lt;function add_missing_slots at 0x11f8f49d0&gt;,
+                                     kw_args={&#x27;datetime_col&#x27;: &#x27;date&#x27;,
+                                              &#x27;entity_col&#x27;: &#x27;city&#x27;,
+                                              &#x27;freq&#x27;: &#x27;MS&#x27;,
+                                              &#x27;value_col&#x27;: &#x27;sales&#x27;})),
+                (&#x27;functiontransformer-2&#x27;,
+                 FunctionTransformer(func=&lt;function transform_ts_data_into_features_and_target at 0x11f925ca0&gt;,
+                                     kw_args={&#x27;concat_Xy&#x27;: True,
+                                              &#x27;datetime_col&#x27;: &#x27;date&#x27;,
+                                              &#x27;entity_col&#x27;: &#x27;city&#x27;,
+                                              &#x27;n_features&#x27;: 3, &#x27;n_targets&#x27;: 1,
+                                              &#x27;step_name&#x27;: &#x27;month&#x27;,
+                                              &#x27;step_size&#x27;: 1,
+                                              &#x27;value_col&#x27;: &#x27;sales&#x27;}))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox" ><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">FunctionTransformer</label><div class="sk-toggleable__content"><pre>FunctionTransformer(func=&lt;function add_missing_slots at 0x11f8f49d0&gt;,
+                    kw_args={&#x27;datetime_col&#x27;: &#x27;date&#x27;, &#x27;entity_col&#x27;: &#x27;city&#x27;,
+                             &#x27;freq&#x27;: &#x27;MS&#x27;, &#x27;value_col&#x27;: &#x27;sales&#x27;})</pre></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox" ><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">FunctionTransformer</label><div class="sk-toggleable__content"><pre>FunctionTransformer(func=&lt;function transform_ts_data_into_features_and_target at 0x11f925ca0&gt;,
+                    kw_args={&#x27;concat_Xy&#x27;: True, &#x27;datetime_col&#x27;: &#x27;date&#x27;,
+                             &#x27;entity_col&#x27;: &#x27;city&#x27;, &#x27;n_features&#x27;: 3,
+                             &#x27;n_targets&#x27;: 1, &#x27;step_name&#x27;: &#x27;month&#x27;,
+                             &#x27;step_size&#x27;: 1, &#x27;value_col&#x27;: &#x27;sales&#x27;})</pre></div></div></div></div></div></div></div>
+
+``` python
+Xy_df = ts_data_to_features_and_target_pipeline.fit_transform(df)
+Xy_df
+```
+
+    100%|██████████| 3/3 [00:00<00:00, 715.47it/s]
+    100%|██████████| 3/3 [00:00<00:00, 184.12it/s]
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+&#10;    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+&#10;    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+
+|     | sales_previous_3_month | sales_previous_2_month | sales_previous_1_month | date       | city | target_sales_next_month |
+|-----|------------------------|------------------------|------------------------|------------|------|-------------------------|
+| 0   | 4944.0                 | 3435.0                 | 4543.0                 | 2020-04-01 | FOR  | 3879.0                  |
+| 1   | 3435.0                 | 4543.0                 | 3879.0                 | 2020-05-01 | FOR  | 2601.0                  |
+| 2   | 4543.0                 | 3879.0                 | 2601.0                 | 2020-06-01 | FOR  | 2922.0                  |
+| 3   | 3879.0                 | 2601.0                 | 2922.0                 | 2020-07-01 | FOR  | 4542.0                  |
+| 4   | 2601.0                 | 2922.0                 | 4542.0                 | 2020-08-01 | FOR  | 1338.0                  |
+| ... | ...                    | ...                    | ...                    | ...        | ...  | ...                     |
+| 91  | 4197.0                 | 4141.0                 | 2899.0                 | 2022-07-01 | RJ   | 0.0                     |
+| 92  | 4141.0                 | 2899.0                 | 0.0                    | 2022-08-01 | RJ   | 0.0                     |
+| 93  | 2899.0                 | 0.0                    | 0.0                    | 2022-09-01 | RJ   | 1856.0                  |
+| 94  | 0.0                    | 0.0                    | 1856.0                 | 2022-10-01 | RJ   | 4804.0                  |
+| 95  | 0.0                    | 1856.0                 | 4804.0                 | 2022-11-01 | RJ   | 1764.0                  |
 
 <p>96 rows × 6 columns</p>
 </div>

@@ -115,7 +115,8 @@ def transform_ts_data_into_features_and_target(
     value_col: str,          # Name of the value column
     n_targets: int=1,        # Number of target values to predict
     step_size: int=1,        # Step size to use to slide the Time Series DataFrame
-    step_name: str=None      # Name of the step column
+    step_name: str=None,     # Name of the step column
+    concat_Xy: bool=False    # Whether to concat X and y on the same dataframe or not
 ) -> pd.DataFrame:
     """
     Slices and transposes data from time-series format into a (features, target)
@@ -201,4 +202,7 @@ def transform_ts_data_into_features_and_target(
     features.reset_index(inplace=True, drop=True)
     targets.reset_index(inplace=True, drop=True)
 
-    return features, targets
+    if concat_Xy:
+        return pd.concat([features, targets], axis=1)
+    else:
+        return features, targets
